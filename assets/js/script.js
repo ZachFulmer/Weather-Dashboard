@@ -1,4 +1,5 @@
 var citySearchEl = document.querySelector("#search-nav-bar");
+var citySearchContainerEl = document.querySelector("#city-search-container");
 var cityInputEl = document.querySelector("#city-name");
 var todaysWeatherContainer = document.querySelector("#todaysWeather");
 var forecastContainer = document.querySelector("#forecast-container");
@@ -21,6 +22,10 @@ var citySearchHandler = function(event)
         {
             window.alert("Please enter a city name");
         }
+    }
+    else if(event.target.type == "button")
+    {
+        getLocation(event.target.textContent);
     }
     
 };
@@ -296,11 +301,23 @@ var getWeatherStatusUrl = function(weathercode)
 
 var createHistoryEl = function(city)
 {
-    var cityBtn = document.createElement("button");
-    cityBtn.classList.add("btn cityBtn");
-    cityBtn.textContent = city;
+    // Check see if the City already exists 
+    for(var i = 0; i < cityArr.length; i++)
+    {
+        if(cityArr[i] == city)
+        {
+            return;
+        }
+    }
 
-    todaysWeatherContainer.appendChild(cityBtn);
+    // else create new city button
+    var cityBtn = document.createElement("button");
+    cityBtn.setAttribute("type","button");
+    cityBtn.classList.add("btn","city-btn","bg-secondary","text-white","form-control","mt-3");
+    cityBtn.textContent = city;
+    cityArr.push(city);
+
+    citySearchEl.appendChild(cityBtn);
 };
 
 citySearchEl.addEventListener("click", citySearchHandler);
