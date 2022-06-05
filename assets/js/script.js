@@ -32,7 +32,7 @@ var citySearchHandler = function(event)
 
 var getLocation = function(city)
 {
-    var apiUrl = "http://api.openweathermap.org/geo/1.0/direct?q=" + city + "&limit=1&appid=2eb6beb9db14f1d13ccbe17bee16e2a1";
+    var apiUrl = "https://api.openweathermap.org/geo/1.0/direct?q=" + city + "&limit=1&appid=2eb6beb9db14f1d13ccbe17bee16e2a1";
 
     fetch(apiUrl).then(function(response)
     {
@@ -207,7 +207,7 @@ var displayWeatherData = function(city, weatherData)
 
 var getWeatherStatusUrl = function(weathercode)
 {
-    var statusApiUrl = "http://openweathermap.org/img/wn/";
+    var statusApiUrl = "https://openweathermap.org/img/wn/";
     var imgCode = "";
 
     switch(weathercode)
